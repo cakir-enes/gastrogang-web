@@ -1,4 +1,5 @@
-import { Form, Input, Button, Icon } from 'antd';
+import {Form, Input, Button, Icon} from 'antd';
+import axios from 'axios';
 
 class RegistrationForm extends React.Component {
     state = {
@@ -23,7 +24,7 @@ class RegistrationForm extends React.Component {
 
     handleConfirmBlur = e => {
         const value = e.target.value;
-        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+        this.setState({confirmDirty: this.state.confirmDirty || !!value});
     };
 
     compareToFirstPassword = (rule, value, callback) => {
@@ -38,20 +39,20 @@ class RegistrationForm extends React.Component {
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
+            form.validateFields(['confirm'], {force: true});
         }
         callback();
     };
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         return (
             <Form onSubmit={this.handleSubmit}>
                 <Form.Item>
                     {getFieldDecorator('username', {
-                        rules: [{ required: true, message: 'Please input your username!', whitespace: false}],
+                        rules: [{required: true, message: 'Please input your username!', whitespace: false}],
                     })(<Input
-                        prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                        prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
                         placeholder="Username"
                     />)}
                 </Form.Item>
@@ -61,11 +62,12 @@ class RegistrationForm extends React.Component {
                             required: true, message: 'Please input your password!',
                         }, {
                             validator: this.validateToNextPassword,
-                        },{
+                        }, {
                             min: 6, message: 'Minimum password length must be 6!',
                         }],
                     })(
-                        <Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Password" />
+                        <Input.Password prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                        placeholder="Password"/>
                     )}
                 </Form.Item>
                 <Form.Item hasFeedback>
@@ -80,7 +82,8 @@ class RegistrationForm extends React.Component {
                             },
                         ],
                     })(
-                        <Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Confirm Password" onBlur={this.handleConfirmBlur} />
+                        <Input.Password prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                                        placeholder="Confirm Password" onBlur={this.handleConfirmBlur}/>
                     )}
                 </Form.Item>
                 <Form.Item>
@@ -91,6 +94,6 @@ class RegistrationForm extends React.Component {
     }
 }
 
-const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm);
+const WrappedRegistrationForm = Form.create({name: 'register'})(RegistrationForm);
 
 export default WrappedRegistrationForm

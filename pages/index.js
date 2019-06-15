@@ -4,7 +4,7 @@ import Page from '../layouts/main'
 const Index = () => (
     <div>
         <Page>
-            <LoginRegisterTabbedCard />
+            <LoginRegisterTabbedCard/>
         </Page>
     </div>
 );

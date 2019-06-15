@@ -1,6 +1,6 @@
 import WrappedNormalLoginForm from './Login'
 import WrappedRegistrationForm from './Register'
-import { Card } from "antd";
+import {Card} from "antd";
 
 const tabList = [
     {
@@ -24,14 +24,14 @@ class LoginRegisterTabbedCard extends React.Component {
     };
 
     onTabChange = (key, type) => {
-        this.setState({ [type]: key });
+        this.setState({[type]: key});
     };
 
     render() {
         return (
             <div>
                 <Card
-                    style={{ width: "100%" }}
+                    style={{width: "100%"}}
                     tabList={tabList}
                     activeTabKey={this.state.key}
                     onTabChange={key => {
