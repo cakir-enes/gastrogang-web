@@ -13,7 +13,9 @@ class RegistrationForm extends React.Component {
                     data: [{
                         "username": values.username,
                         "password": values.password
-                    }]
+                    }], headers: {
+                        "Content-Type": "application/json",
+                    }
                 }).then(console.log)
             }
         });
@@ -47,7 +49,7 @@ class RegistrationForm extends React.Component {
             <Form onSubmit={this.handleSubmit}>
                 <Form.Item>
                     {getFieldDecorator('username', {
-                        rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
+                        rules: [{ required: true, message: 'Please input your username!', whitespace: false}],
                     })(<Input
                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         placeholder="Username"
@@ -59,7 +61,9 @@ class RegistrationForm extends React.Component {
                             required: true, message: 'Please input your password!',
                         }, {
                             validator: this.validateToNextPassword,
-                        },],
+                        },{
+                            min: 6, message: 'Minimum password length must be 6!',
+                        }],
                     })(
                         <Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Password" />
                     )}
@@ -69,7 +73,7 @@ class RegistrationForm extends React.Component {
                         rules: [
                             {
                                 required: true,
-                                message: 'Please confirm your password!',
+                                message: 'Please confirm your password!'
                             },
                             {
                                 validator: this.compareToFirstPassword,

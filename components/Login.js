@@ -6,11 +6,13 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                axios.post('http://10.2.36.29:8080/api/v1/login', {
+                axios.post('http://localhost:8080/api/v1/login', {
                     data: [{
                         "username": values.username,
                         "password": values.password
-                    }]
+                    }], headers: {
+                        "Content-Type": "application/json",
+                    }
                 }).then(console.log)
             }
         });
