@@ -1,6 +1,6 @@
 import WrappedRegistrationForm from './Register'
 import WrappedNormalLoginForm from './Login'
-import Card from "antd";
+import {Card} from "antd";
 
 const tabList = [
     {

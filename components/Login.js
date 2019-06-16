@@ -7,10 +7,10 @@ class NormalLoginForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axios.post('https://pacific-journey-89833.herokuapp.com/api/v1/login', {
-                    data: {
+                    data: [{
                         "username": values.username,
                         "password": values.password
-                    }, headers: {
+                    }], headers: {
                         "Content-Type": "application/json",
                     }
                 }).then(console.log);
