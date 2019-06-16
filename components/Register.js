@@ -10,14 +10,11 @@ class RegistrationForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                axios.post('https://pacific-journey-89833.herokuapp.com/api/v1/register', {
-                    data: [{
-                        "username": values.username,
-                        "password": values.password
-                    }], headers: {
-                        "Content-Type": "application/json",
-                    }
-                }).then(console.log)
+                const { name, password } = values
+                axios.post('https://gastrogang.herokuapp.com/api/v1/register', {
+                    "name": name,
+                    "password": password,
+                }).then(console.log);
             }
         });
     };
@@ -49,7 +46,7 @@ class RegistrationForm extends React.Component {
         return (
             <Form onSubmit={this.handleSubmit}>
                 <Form.Item>
-                    {getFieldDecorator('username', {
+                    {getFieldDecorator('name', {
                         rules: [{required: true, message: 'Please input your username!', whitespace: false}],
                     })(<Input
                         prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
