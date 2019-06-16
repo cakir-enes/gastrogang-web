@@ -1,6 +1,5 @@
 import {Form, Input, Button, Icon} from 'antd';
 import axios from 'axios';
-import * as React from "react";
 
 class RegistrationForm extends React.Component {
     state = {
@@ -11,11 +10,11 @@ class RegistrationForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                axios.post('https://cors-anywhere.herokuapp.com/https://pacific-journey-89833.herokuapp.com/api/v1/register', {
-                    data: [{
+                axios.post('https://pacific-journey-89833.herokuapp.com/api/v1/register', {
+                    data: {
                         "username": values.username,
                         "password": values.password
-                    }], headers: {
+                    }, headers: {
                         "Content-Type": "application/json",
                     }
                 }).then(console.log)

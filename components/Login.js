@@ -1,22 +1,19 @@
-import axios from 'axios';
-import * as React from "react";
-import Router from 'next/router';
 import {Form, Icon, Input, Button} from 'antd';
+import axios from 'axios';
 
 class NormalLoginForm extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                let res = axios.post('https://cors-anywhere.herokuapp.com/https://pacific-journey-89833.herokuapp.com/api/v1/login', {
-                    data: [{
+                axios.post('https://pacific-journey-89833.herokuapp.com/api/v1/login', {
+                    data: {
                         "username": values.username,
                         "password": values.password
-                    }], headers: {
+                    }, headers: {
                         "Content-Type": "application/json",
                     }
                 }).then(console.log);
-                Router.push('/about')
             }
         });
     };

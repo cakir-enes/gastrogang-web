@@ -3,7 +3,7 @@ import Page from '../layouts/main'
 const About = () => (
     <div>
         <Page>
-            yo
+            About
         </Page>
     </div>
 );
