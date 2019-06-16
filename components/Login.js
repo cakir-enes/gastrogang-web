@@ -1,4 +1,5 @@
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, notification } from 'antd';
+import Router from 'next/router';
 import axios from 'axios';
 
 class NormalLoginForm extends React.Component {
@@ -10,7 +11,18 @@ class NormalLoginForm extends React.Component {
                 axios.post('https://gastrogang.herokuapp.com/api/v1/login', {
                     "name": name,
                     "password": password,
-                }).then(console.log);
+                }).then(function (response) {
+                    notification.success({
+                        message: response.status,
+                        description: response.statusText,
+                    })
+                    Router.push('/about')
+                }).catch(function (error) {
+                    notification.warning({
+                        message: error.response.status,
+                        description: error.response.data.message,
+                    })
+                })
             }
         });
     };
@@ -25,7 +37,8 @@ class NormalLoginForm extends React.Component {
                     })(
                         <Input
                             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Username" />
+                            placeholder="Username"
+                        />
                     )}
                 </Form.Item>
                 <Form.Item>
@@ -34,7 +47,8 @@ class NormalLoginForm extends React.Component {
                     })(
                         <Input.Password
                             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            type="password" placeholder="Password" />
+                            type="password" placeholder="Password"
+                        />
                     )}
                 </Form.Item>
                 <Form.Item>
