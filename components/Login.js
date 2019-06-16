@@ -1,19 +1,22 @@
-import {Form, Icon, Input, Button} from 'antd';
 import axios from 'axios';
+import * as React from "react";
+import Router from 'next/router';
+import {Form, Icon, Input, Button} from 'antd';
 
 class NormalLoginForm extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                axios.post('http://localhost:8080/api/v1/login', {
+                let res = axios.post('https://cors-anywhere.herokuapp.com/https://pacific-journey-89833.herokuapp.com/api/v1/login', {
                     data: [{
                         "username": values.username,
                         "password": values.password
                     }], headers: {
                         "Content-Type": "application/json",
                     }
-                }).then(console.log)
+                }).then(console.log);
+                Router.push('/about')
             }
         });
     };
@@ -35,7 +38,7 @@ class NormalLoginForm extends React.Component {
                     {getFieldDecorator('password', {
                         rules: [{required: true, message: 'Please input your Password!'}],
                     })(
-                        <Input
+                        <Input.Password
                             prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
                             type="password" placeholder="Password"/>
                     )}
