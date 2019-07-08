@@ -1,6 +1,7 @@
 import { Form, Input, Button, Icon, notification } from 'antd';
 import Router from 'next/router';
 import axios from 'axios';
+import Cookies from 'js-cookie'
 
 class RegistrationForm extends React.Component {
     state = {
@@ -20,7 +21,10 @@ class RegistrationForm extends React.Component {
                         message: response.status,
                         description: response.statusText,
                     })
-                    Router.push('/about')
+                    Cookies.set('token', JSON.parse(response.request.response)['token']);
+                    Cookies.set('name', JSON.parse(response.request.response)['name']);
+                    Cookies.set('id', JSON.parse(response.request.response)['ID']);
+                    Router.push('/about');
                 })
                     .catch(function (error) {
                         notification.warning({
