@@ -1,6 +1,7 @@
 import { Form, Icon, Input, Button, notification } from 'antd';
 import Router from 'next/router';
 import axios from 'axios';
+import Cookies from 'js-cookie'
 
 class NormalLoginForm extends React.Component {
     handleSubmit = e => {
@@ -16,12 +17,16 @@ class NormalLoginForm extends React.Component {
                         message: response.status,
                         description: response.statusText,
                     })
-                    Router.push('/about')
+                    Cookies.set('token', JSON.parse(response.request.response)['token']);
+                    Cookies.set('name', JSON.parse(response.request.response)['name']);
+                    Cookies.set('id', JSON.parse(response.request.response)['ID']);
+                    Router.push('/about');
                 }).catch(function (error) {
                     notification.warning({
                         message: error.response.status,
                         description: error.response.data.message,
                     })
+                    console.log(error.response)
                 })
             }
         });
