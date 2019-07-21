@@ -57,6 +57,16 @@ const CollectionCreateForm = Form.create({name: 'form_in_modal'})(
                                 ],
                             })(<Input type="textarea"/>)}
                         </Form.Item>
+                        <Form.Item label="Tags">
+                            {getFieldDecorator('tags', {
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: 'Please input recipe tags!',
+                                    }
+                                ],
+                            })(<Input type="textarea"/>)}
+                        </Form.Item>
                     </Form>
                 </Modal>
             );
@@ -83,12 +93,13 @@ class CollectionsPage extends React.Component {
             if (err) {
                 return;
             } else {
-                const {name, details, steps, ingredients} = values
+                const {name, details, steps, ingredients, tags} = values
                 axios.post('https://gastrogang.herokuapp.com/api/v1/recipes', {
                         "name": name,
                         "details": details,
                         "steps": [steps],
                         "ingredients": [ingredients],
+                        "tags": [tags],
                     }, {
                         headers: {
                             'Content-Type': 'application/json',
@@ -124,7 +135,7 @@ class CollectionsPage extends React.Component {
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    New Collection
+                    Add recipe
                 </Button>
                 <CollectionCreateForm
                     wrappedComponentRef={this.saveFormRef}

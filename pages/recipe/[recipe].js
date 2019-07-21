@@ -14,11 +14,13 @@ class RecipeForm extends React.Component {
             details: props.recipe.details,
             steps: props.recipe.steps,
             ingredients: props.recipe.ingredients,
+            tags: props.recipe.tags,
             id: props.recipe.ID,
         }
         this.onChangeDetails = this.onChangeDetails.bind(this)
         this.onChangeStep = this.onChangeStep.bind(this)
         this.onChangeIngredient = this.onChangeIngredient.bind(this)
+        this.onChangeTag = this.onChangeTag.bind(this)
         // this.updateRecipe = this.updateRecipe.bind(this)
         this.deleteRecipe = this.deleteRecipe.bind(this)
     }
@@ -53,6 +55,12 @@ class RecipeForm extends React.Component {
                             <Card size="small"><Paragraph
                                 editable={{onChange: this.onChangeIngredient}}>{ingredient}</Paragraph></Card>
                         ))}</Card>
+                        <Card type="inner" size="small"
+                              title="Tags">{this.state.tags.map(tag => (
+                            <Card size="small"><Paragraph
+                                // editable={{onChange: this.onChangeTag}}
+                            >{tag}</Paragraph></Card>
+                        ))}</Card>
                     </Card>
                 </Page>
             </div>
@@ -79,13 +87,20 @@ class RecipeForm extends React.Component {
         await this.setState({ingredients: [str]})
         this.updateRecipe()
     };
+    async onChangeTag(str) {
+        console.log('Content change:', str);
+        await this.setState({tags: [str]})
+        this.updateRecipe()
+    };
 
     updateRecipe() {
-        const {details, steps, ingredients, id} = this.state
+        const {details, steps, ingredients, tags, id} = this.state
+        console.log(this.state)
         axios.put('https://gastrogang.herokuapp.com/api/v1/recipes/'+id, {
                 "details": details,
                 "steps": steps,
                 "ingredients": ingredients,
+                "tags": tags,
             }, {
                 headers: {
                     'Content-Type': 'application/json',

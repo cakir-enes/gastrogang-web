@@ -20,7 +20,7 @@ class NormalLoginForm extends React.Component {
                     Cookies.set('token', JSON.parse(response.request.response)['token']);
                     Cookies.set('name', JSON.parse(response.request.response)['name']);
                     Cookies.set('id', JSON.parse(response.request.response)['ID']);
-                    Router.push('/about');
+                    Router.push('/recipes');
                 }).catch(function (error) {
                     notification.warning({
                         message: error.response.status,
