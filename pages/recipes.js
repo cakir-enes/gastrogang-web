@@ -2,7 +2,9 @@ import Page from '../layouts/main'
 import CollectionsPage from '../components/AddRecipe'
 import Link from 'next/link';
 import axios from 'axios';
-import {Row, Col, Card} from 'antd';
+import {Row, Col, Card, Input} from 'antd';
+
+const {Search} = Input;
 import Router, {useRouter} from 'next/router'
 
 const Recipes = props => (
@@ -10,6 +12,14 @@ const Recipes = props => (
         <Page>
             <h1>Recipes</h1>
             <Row type="flex" justify="end">
+                <Col>
+                    <Search
+                        placeholder="input search text"
+                        onSearch={value => searchByTag(value)}
+                        style={{width: 200, marginRight: 8}}
+                    />
+                    <br/>
+                </Col>
                 <Col>
                     <CollectionsPage/>
                     <br/>
@@ -65,5 +75,12 @@ Recipes.getInitialProps = async function () {
         })
     }
 };
+
+async function searchByTag(value){
+    Router.push({
+        pathname: '/search',
+        query: { tag: value },
+    })
+}
 
 export default Recipes

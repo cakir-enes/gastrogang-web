@@ -71,7 +71,6 @@ class RecipeForm extends React.Component {
     componentDidMount() {
         console.log(this.props)
     }
-
     async onChangeDetails(str){
         console.log('Content change:', str);
         await this.setState({details: str});
