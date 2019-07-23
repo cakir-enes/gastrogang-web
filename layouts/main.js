@@ -12,6 +12,7 @@ export default ({children}) => (
                     mode="horizontal"
                     style={{lineHeight: '64px'}}
                 >
+                    <Menu.Item key="0"><a href={"/"}>home</a></Menu.Item>
                     <Menu.Item key="1"><a href={"/recipes"}>recipes</a></Menu.Item>
                     <Menu.Item key="2"><a href={"/about"}>about</a></Menu.Item>
                 </Menu></Header>

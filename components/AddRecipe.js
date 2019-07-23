@@ -30,14 +30,6 @@ const CollectionCreateForm = Form.create({name: 'form_in_modal'})(
             });
         };
 
-        handleSubmitStep = e => {
-            e.preventDefault();
-            this.props.form.validateFields((err, values) => {
-                if (!err) {
-                    const {keysSteps, steps} = values;
-                }
-            });
-        };
         removeIngredient = k => {
             const {form} = this.props;
             const keysIngredients = form.getFieldValue('keysIngredients');
@@ -58,14 +50,6 @@ const CollectionCreateForm = Form.create({name: 'form_in_modal'})(
             });
         };
 
-        handleSubmitIngredient = e => {
-            e.preventDefault();
-            this.props.form.validateFields((err, values) => {
-                if (!err) {
-                    const {keysIngredients, ingredients} = values;
-                }
-            });
-        };
         removeTag = k => {
             const {form} = this.props;
             const keysTags = form.getFieldValue('keysTags');
@@ -83,15 +67,6 @@ const CollectionCreateForm = Form.create({name: 'form_in_modal'})(
             const nextKeysTags = keysTags.concat(idTags++);
             form.setFieldsValue({
                 keysTags: nextKeysTags,
-            });
-        };
-
-        handleSubmitIngredient = e => {
-            e.preventDefault();
-            this.props.form.validateFields((err, values) => {
-                if (!err) {
-                    const {keysTags, tags} = values;
-                }
             });
         };
 
@@ -263,7 +238,7 @@ class CollectionsPage extends React.Component {
                     }, {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjN9.8MdXgqXN4F7JbG7Ht3bUiJhmHHGhRrlobH4Ei6Ha4WM',
+                            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjM3fQ.RMUTr_05T_MGJqaHf8fu3i_5b_BDbYUoldDjW1m66Go',
                             // 'Authorization': 'Bearer ' + Cookies.get('token')
                         }
                     },

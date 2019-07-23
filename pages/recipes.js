@@ -54,7 +54,7 @@ Recipes.getInitialProps = async function () {
     const ress = await axios.get('https://gastrogang.herokuapp.com/api/v1/recipes', {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjN9.8MdXgqXN4F7JbG7Ht3bUiJhmHHGhRrlobH4Ei6Ha4WM',
+            'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjM3fQ.RMUTr_05T_MGJqaHf8fu3i_5b_BDbYUoldDjW1m66Go',
             // 'Authorization': 'Bearer ' + Cookies.get('token')
         },
     })
@@ -64,9 +64,9 @@ Recipes.getInitialProps = async function () {
         data = [{
             name: "example_recipe",
             details: "no recipe has been found, so this recipe created as an example, please use 'add recipe' button",
-            steps: [""],
-            ingredients: [""],
-            tags: [""]
+            steps: ["ex_step1", "ex_step2"],
+            ingredients: ["ex_ingr1", "ex_ingr2"],
+            tags: ["ex_tag1", "ex_tag2"]
         }]
     }
     return {

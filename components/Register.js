@@ -12,10 +12,11 @@ class RegistrationForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
-                const { name, password } = values
+                const { name, password, lifetime } = values
                 axios.post('https://gastrogang.herokuapp.com/api/v1/register', {
                     "name": name,
                     "password": password,
+                    "lifetime": parseInt(lifetime),
                 }).then(function (response) {
                     notification.success({
                         message: response.status,
@@ -98,6 +99,21 @@ class RegistrationForm extends React.Component {
                     })(
                         <Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             placeholder="Confirm Password" onBlur={this.handleConfirmBlur} />
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('lifetime', {
+                        rules: [
+                            {
+                                required: true,
+                                message: 'Please enter a lifetime!'
+                            }
+                        ],
+                    })(
+                        <Input
+                            prefix={<Icon type="clock-circle" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            placeholder="Lifetime (as day)"
+                        />
                     )}
                 </Form.Item>
                 <Form.Item>

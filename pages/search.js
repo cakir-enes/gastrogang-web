@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
         const res = await axios.get('https://gastrogang.herokuapp.com/api/v1/search/?tag='.concat(queryTag), {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjN9.8MdXgqXN4F7JbG7Ht3bUiJhmHHGhRrlobH4Ei6Ha4WM',
+                'Authorization': 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjM3fQ.RMUTr_05T_MGJqaHf8fu3i_5b_BDbYUoldDjW1m66Go',
                 // 'Authorization': 'Bearer ' + Cookies.get('token')
             },
         })
